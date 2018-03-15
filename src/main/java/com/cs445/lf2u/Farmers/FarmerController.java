@@ -15,12 +15,7 @@ public class FarmerController {
 
 	@Autowired
 	private FarmerService farmerService;
-	
-	
-	public String farm() {
-		return "Farmers";
-	}
-	
+		
 	@RequestMapping(method = RequestMethod.POST, value = "/farmers")
 	public Fid addFarmer(@RequestBody Farmer farmer) {
 		
