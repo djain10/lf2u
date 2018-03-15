@@ -19,6 +19,7 @@ public class ManagerController {
 		return managerService.showAccounts();
 	}
 	
+	
 	@RequestMapping("/accounts/{mid}")
 	public Manager getTopic(@PathVariable String mid) {
 		return managerService.getManager(mid);
