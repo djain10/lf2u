@@ -3,11 +3,7 @@ package com.cs445.lf2u.Customers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
-import com.cs445.lf2u.Farmers.Farmer;
-import com.cs445.lf2u.Farmers.Fid;
 
 @Service
 public class CustomerService {

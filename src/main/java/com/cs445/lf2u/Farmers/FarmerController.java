@@ -36,7 +36,6 @@ public class FarmerController {
 	
 	@RequestMapping ("/farmers")
 	public ZipCodeFarm findviaZip(@QueryParam(value = "zip") String zip) {
-		return farmerService.findviaZip(zip);
-		
+		return farmerService.findviaZip(zip);		
 	}
 }
