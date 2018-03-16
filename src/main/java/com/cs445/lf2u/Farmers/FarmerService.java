@@ -58,4 +58,9 @@ public class FarmerService {
 		
 		
 	}
+
+	public FarmProducts addFarmProduct(String fid, FarmProducts farmProducts) {
+		
+		return null;
+	}
 }
