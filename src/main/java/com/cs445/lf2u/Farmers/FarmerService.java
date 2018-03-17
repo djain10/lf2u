@@ -3,12 +3,15 @@ package com.cs445.lf2u.Farmers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FarmerService {
 
 	private List<Farmer> farmers= new ArrayList<>();
+	private List<FarmProducts> farmProd = new ArrayList<>();
 	
 	public Fid addFarmer(Farmer farmer) {
 		farmers.add(farmer);
@@ -59,8 +62,18 @@ public class FarmerService {
 		
 	}
 
-	public FarmProducts addFarmProduct(String fid, FarmProducts farmProducts) {
-		
+	public FarmProducts addFarmProduct(String fid, JSONArray farmProducts) throws JSONException {
+		FarmProducts farmProduct = new FarmProducts();
+		JSONArray list = new JSONArray();
+		JSONArray jsonArray = new JSONArray(farmProducts);
+		int length = jsonArray.length();
+		if(jsonArray !=null) {
+			for(int i = 0;i<length;i++) {
+				if(i!=0) {
+					farmProduct
+				}
+			}
+		}
 		return null;
 	}
 }
