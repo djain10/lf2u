@@ -14,7 +14,7 @@ public class ManagerService {
 			new Manager("79","Johnny Smith","Super User","20161015","123-0987-659","johnny.smith@example.com")
 			));
 	
-	public List<Catalog> catalogs = new ArrayList<>(Arrays.asList());
+	public static List<Catalog> catalogs = new ArrayList<>(Arrays.asList());
 	
 	public List<Manager> showAccounts() {
 		
@@ -48,8 +48,6 @@ public class ManagerService {
 	}
 
 	public List<Catalog> getProducts() {
-		// TODO Auto-generated method stub
-		
 		return catalogs;
 	}
 }

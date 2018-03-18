@@ -2,8 +2,9 @@ package com.cs445.lf2u.Farmers;
 
 import com.cs445.lf2u.IdGenreator.UniqueIdGenerator;
 
-public class FarmProducts {
-	
+public class InputDataBean {
+
+	String gcpid;
 	String fspid;
 	String name;
 	String note;
@@ -11,10 +12,14 @@ public class FarmProducts {
 	String end_date;
 	String price;
 	String product_unit;
-	String image;
-		
-	public FarmProducts() {
-		this.fspid = UniqueIdGenerator.getUniqueID();
+	String image;	
+	
+	
+	public String getGcpid() {
+		return gcpid;
+	}
+	public void setGcpid(String gcpid) {
+		this.gcpid = gcpid;
 	}
 	public String getFspid() {
 		return fspid;
@@ -64,7 +69,5 @@ public class FarmProducts {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	
 
 }

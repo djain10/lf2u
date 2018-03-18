@@ -1,5 +1,7 @@
 package com.cs445.lf2u.Farmers;
 
+import java.util.List;
+
 import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +41,20 @@ public class FarmerController {
 		return farmerService.findviaZip(zip);		
 	}
 	
+	@RequestMapping(method = RequestMethod.POST,value = "/farmers/{fid}/products" )
+	public Fspid addFarmProduct(@PathVariable String fid, @RequestBody InputDataBean inputData) {
+	
+		return farmerService.addFarmProduct(fid, inputData);
+	}
+	
+	@RequestMapping("/farmers/{fid}/products")
+	public List<FarmProducts> getFarmerProductsList(@PathVariable String fid){
+		return farmerService.getFarmerProductsList(fid);
+	}
+	
+	@RequestMapping("/farmers/{fid}/products/{fspid}")
+	public FarmProducts getFarmProduct(String fid, String fspid) {
+		return farmerService.getFarmProduct(fid,fspid);
+	}
 	
 }

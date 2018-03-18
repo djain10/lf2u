@@ -12,24 +12,7 @@ public class Farmer {
 	public Farmer(){
 		this.fid = UniqueIdGenerator.getUniqueID();
 	}
-	
-	
-	/*public Farmer(Farm_info farm_info, Personal_info personal_info, String[] delivers_to) {
-		super();		
-		this.farm_info = farm_info;
-		this.personal_info = personal_info;
-		this.delivers_to = delivers_to;
-	}*/
-	
-/*	public Farmer(String fid,Farm_info farm_info, Personal_info personal_info, String[] delivers_to) {
-		super();
-		this.fid = UniqueIdGenerator.getUniqueID();
-		this.farm_info = farm_info;
-		this.personal_info = personal_info;
-		this.delivers_to = delivers_to;
-	}
-*/
-	 
+		 
 	public String getFid() {
 		return fid;
 	}
