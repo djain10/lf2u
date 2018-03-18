@@ -14,7 +14,7 @@ public class ManagerService {
 			new Manager("79","Johnny Smith","Super User","20161015","123-0987-659","johnny.smith@example.com")
 			));
 	
-	private List<Catalog> catalogs = new ArrayList<>(Arrays.asList());
+	public List<Catalog> catalogs = new ArrayList<>(Arrays.asList());
 	
 	public List<Manager> showAccounts() {
 		
