@@ -27,6 +27,8 @@ public class CustomerService {
 	private static List<Order> orderList = new ArrayList<>();
 	public static List<OrderDetail> orderDetailList= new ArrayList<>();
 	public static List<CustomerOrderList> customerOrderList = new ArrayList<>();
+	public static List<OutputOrderStream> outputOrderStreamList= new ArrayList<>();
+	
 	Customer c;
 
 	public Cid createCustomer(Customer customer) {
@@ -72,18 +74,24 @@ public class CustomerService {
 						fid.setFid(inputStream.getFid());
 						order_farm_info.setFid(fid);
 						order_farm_info.setFaminfo(farmer.getFarm_info());
-					}
+						for(int n =0;n<FarmerService.deliveryCharge.size();n++) {
+							DeliveryCharge delivery_charge = FarmerService.deliveryCharge.get(i);
+							String farmerId = inputStream.getFid();
+							if(delivery_charge.getFid().equals(farmerId)) {
+								order.setDelivery_charge(delivery_charge.getDeliveryCharge());
+							}
+						}
 				}
 				//farm Info addded in order
 				order.setFarm_info(order_farm_info);
 
 				OrderDetail orderDetail = new OrderDetail();
-				InputStreamOrder iso = new InputStreamOrder();
+				//InputStreamOrder iso = new InputStreamOrder();
 				for(int k=0;k<inputStream.getOrder_detail().size();k++) {
 					InputStreamOrderDetail isod = inputStream.getOrder_detail().get(k);
 					for(int l= 0; l<FarmerService.farmProd.size();l++) {
 						FarmProduct farmProduct = FarmerService.farmProd.get(l);
-						if(farmProduct.getFspid().equals(iso.getFid())) {
+						if(farmProduct.getFspid().equals(isod.getFspid())) {
 							orderDetail.setFspid(isod.getFspid());
 							StringBuilder amount = new StringBuilder();
 							amount.append(isod.getAmount()).append(" ").append(farmProduct.getProduct_unit());
@@ -100,20 +108,16 @@ public class CustomerService {
 				//order details added in order.
 				order.setOrderDetails(orderDetailList);
 
-				order.setDeliveryNote(iso.getDelivery_note());
+				order.setDeliveryNote(inputStream.getDelivery_note());
 				double total =0;
 				for(int m=0; m<order.getOrderDetails().size();m++) {
 
 					total += orderDetail.getLine_item_total();					
 				}
 				order.setProducts_total(total);
-				for(int n=0;n<FarmerService.deliveryCharge.size();n++) {
-					DeliveryCharge delivery_charge = FarmerService.deliveryCharge.get(n);
-					if(delivery_charge.getFid().equals(order.getFarm_info().getFid())) {
-						order.setDelivery_charge(delivery_charge);
-					}				
+								
 				}
-				order.setOrder_total(order.getProducts_total() + order.getDelivery_charge().getDeliveryCharge());
+				order.setOrder_total(order.getProducts_total() + order.getDelivery_charge());
 
 				orderList.add(order);
 				CustomerOrderList col = new CustomerOrderList();
@@ -129,7 +133,7 @@ public class CustomerService {
 		return null;
 	}
 
-	public OutputOrderStream getOrderById(String cid, String oid) {
+	public List<OutputOrderStream> getOrders(String cid) {
 		for(int i=0;i<customers.size();i++) {
 			Customer customer = customers.get(i);			
 			if(customer.getCid().equals(cid)) {
@@ -142,13 +146,24 @@ public class CustomerService {
 						oos.setActual_delivery_date(list.getOrder().getActual_planned_date());
 						oos.setPlanned_delivery_date(list.getOrder().getPlanned_delivery_date());
 						oos.setStatus(list.getOrder().getStatus());
-						oos.setFid(list.getOrder().getFarm_info().getFid().getFid());					
-						return oos;
+						oos.setFid(list.getOrder().getFarm_info().getFid().getFid());
+						outputOrderStreamList.add(oos);
+						return outputOrderStreamList;
 					}
 				}
 			}
 		}
 		return null;
+	}
+
+	public Order getOrdersById(String cid, String oid) {
+		for(int j=0;j<customerOrderList.size();j++) {
+			CustomerOrderList list = customerOrderList.get(j);					
+			if(list.getCid().equals(cid)) {
+				return list.getOrder();
+			}
+		}
+		return null ;
 	}
 
 

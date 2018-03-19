@@ -4,6 +4,7 @@ public class InputStreamOrderDetail {
 	
 	String fspid;
 	double amount;
+	
 	public String getFspid() {
 		return fspid;
 	}

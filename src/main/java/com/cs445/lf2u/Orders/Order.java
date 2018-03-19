@@ -1,8 +1,6 @@
 package com.cs445.lf2u.Orders;
 
 import java.util.List;
-
-import com.cs445.lf2u.Farmers.DeliveryCharge;
 import com.cs445.lf2u.IdGenreator.UniqueIdGenerator;
 
 public class Order {
@@ -16,7 +14,7 @@ public class Order {
 	List<OrderDetail> orderDetails;	
 	String deliveryNote;
 	double products_total; 
-	DeliveryCharge delivery_charge;
+	double delivery_charge;
 	double order_total;
 	
 	public Order(){
@@ -53,13 +51,15 @@ public class Order {
 	public void setProducts_total(double products_total) {
 		this.products_total = products_total;
 	}
-
-	public DeliveryCharge getDelivery_charge() {
+	
+	public double getDelivery_charge() {
 		return delivery_charge;
 	}
-	public void setDelivery_charge(DeliveryCharge delivery_charge) {
+
+	public void setDelivery_charge(double delivery_charge) {
 		this.delivery_charge = delivery_charge;
 	}
+
 	public double getOrder_total() {
 		return order_total;
 	}

@@ -179,6 +179,7 @@ public class FarmerService {
 			DeliveryCharge deliveryChargeList = deliveryCharge.get(i);
 			if(deliveryChargeList .getFid().equals(fid)) {
 				DeliveryChargeOutput  dco = new DeliveryChargeOutput();
+				dco.setDelivery_charge(deliveryChargeList.getDeliveryCharge());
 				return dco;
 			}
 		}

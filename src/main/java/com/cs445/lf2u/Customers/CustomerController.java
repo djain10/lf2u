@@ -1,5 +1,7 @@
 package com.cs445.lf2u.Customers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cs445.lf2u.Orders.InputStreamOrder;
 import com.cs445.lf2u.Orders.Oid;
+import com.cs445.lf2u.Orders.Order;
 import com.cs445.lf2u.Orders.OutputOrderStream;
 
 
@@ -40,14 +43,14 @@ public class CustomerController {
 		return customerSerive.createOrder(cid,inputStream);
 	}
 	
-	@RequestMapping("/customers/{cid}/orders")
-	public Customer getOrders(@PathVariable String cid) {
-		return customerSerive.getCustomerDetails(cid);
+	@RequestMapping("/customers/{cid}/orders/{oid}")
+	public Order getOrdersById(@PathVariable String cid, @PathVariable String oid) {
+		return customerSerive.getOrdersById(cid,oid);
 	}
 	
-	@RequestMapping("/customers/{cid}/orders/{oid}")
-	public OutputOrderStream getOrderById(@PathVariable String cid, @PathVariable String oid) {
-		return customerSerive.getOrderById(cid,oid);
+	@RequestMapping("/customers/{cid}/orders")
+	public List<OutputOrderStream> getOrders(@PathVariable String cid) {
+		return customerSerive.getOrders(cid);
 	}
 	
 	

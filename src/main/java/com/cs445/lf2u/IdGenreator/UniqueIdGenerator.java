@@ -30,13 +30,13 @@ public class UniqueIdGenerator {
     }
     
     public static String getTodayDate() {
-    	DateFormat dateFormat = new SimpleDateFormat("yyyymmdd");
-    	Calendar cal = Calendar.getInstance();
-    	return dateFormat.format(cal);
+    	DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    	Date currentDate = new Date();
+    	return dateFormat.format(currentDate);
     }
     
     public static String getNextDayDate() {    	
-    	DateFormat dateFormat = new SimpleDateFormat("yyyymmdd");
+    	DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
     	Date currentDate = new Date();    	
     	Calendar cal = Calendar.getInstance();
     	cal.setTime(currentDate);
