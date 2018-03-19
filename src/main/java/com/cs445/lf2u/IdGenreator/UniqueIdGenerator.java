@@ -29,13 +29,13 @@ public class UniqueIdGenerator {
         return Integer.toString(atomicInteger.incrementAndGet()+700);
     }
     
-    public String getTodayDate() {
+    public static String getTodayDate() {
     	DateFormat dateFormat = new SimpleDateFormat("yyyymmdd");
     	Calendar cal = Calendar.getInstance();
     	return dateFormat.format(cal);
     }
     
-    public String getNextDayDate() {    	
+    public static String getNextDayDate() {    	
     	DateFormat dateFormat = new SimpleDateFormat("yyyymmdd");
     	Date currentDate = new Date();    	
     	Calendar cal = Calendar.getInstance();

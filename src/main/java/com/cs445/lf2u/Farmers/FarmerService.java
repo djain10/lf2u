@@ -9,10 +9,11 @@ import com.cs445.lf2u.Manager.ManagerService;
 @Service
 public class FarmerService {
 
-	private List<Farmer> farmers= new ArrayList<>();
-	private List<FarmProduct> farmProd = new ArrayList<>();
-	private List<FarmProductList> productList = new ArrayList<>(); 
-
+	public static List<Farmer> farmers= new ArrayList<>();
+	public static List<FarmProduct> farmProd = new ArrayList<>();
+	public static List<FarmProductList> productList = new ArrayList<>(); 
+	public static List<DeliveryCharge> deliveryCharge = new ArrayList<>();
+	
 	public Fid addFarmer(Farmer farmer) {
 		farmers.add(farmer);
 		Fid fi = new Fid();

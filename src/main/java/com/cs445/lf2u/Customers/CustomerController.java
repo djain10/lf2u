@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cs445.lf2u.Orders.InputStreamOrder;
+import com.cs445.lf2u.Orders.Oid;
+import com.cs445.lf2u.Orders.OutputOrderStream;
+
 
 @RestController
 @RequestMapping("/lf2u")
@@ -30,4 +34,21 @@ public class CustomerController {
 		
 		customerSerive.updateCustomer(cid, customer);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/customers/{cid}/orders")
+	public Oid createOrder(@PathVariable String cid, @RequestBody InputStreamOrder inputStream) {
+		return customerSerive.createOrder(cid,inputStream);
+	}
+	
+	@RequestMapping("/customers/{cid}/orders")
+	public Customer getOrders(@PathVariable String cid) {
+		return customerSerive.getCustomerDetails(cid);
+	}
+	
+	@RequestMapping("/customers/{cid}/orders/{oid}")
+	public OutputOrderStream getOrderById(@PathVariable String cid, @PathVariable String oid) {
+		return customerSerive.getOrderById(cid,oid);
+	}
+	
+	
 }

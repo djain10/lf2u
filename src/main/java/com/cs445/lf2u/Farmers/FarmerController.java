@@ -1,9 +1,8 @@
 package com.cs445.lf2u.Farmers;
 
+
 import java.util.List;
-
 import javax.ws.rs.QueryParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,5 +60,6 @@ public class FarmerController {
 	public void updateFarmerProduct(@PathVariable String fid,@PathVariable String fspid, @RequestBody FarmProduct farmProduct){
 		farmerService.updateFarmerProduct(fid,fspid, farmProduct);
 	}
+	
 	
 }
