@@ -10,7 +10,7 @@ public class Farmer {
 	String[] delivers_to;
 	
 	public Farmer(){
-		this.fid = UniqueIdGenerator.getUniqueID();
+		this.fid = UniqueIdGenerator.getUniqueFID();
 	}
 		 
 	public String getFid() {

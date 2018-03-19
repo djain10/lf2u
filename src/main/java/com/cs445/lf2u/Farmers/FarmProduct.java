@@ -14,7 +14,7 @@ public class FarmProduct {
 	String image;
 		
 	public FarmProduct() {
-		this.fspid = UniqueIdGenerator.getUniqueID();
+		this.fspid = UniqueIdGenerator.getUniqueFSPID();
 	}
 	public String getFspid() {
 		return fspid;

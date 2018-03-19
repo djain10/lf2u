@@ -8,7 +8,7 @@ public class Catalog {
 	String name;
 	
 	public Catalog() {
-		this.gcpid = UniqueIdGenerator.getUniqueID();
+		this.gcpid = UniqueIdGenerator.getUniqueGCID();
 	}
 	
 	public String getGcpid() {
