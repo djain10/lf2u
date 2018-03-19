@@ -15,6 +15,7 @@ public class FarmerService {
 	public static List<FarmProduct> farmProd = new ArrayList<>();
 	public static List<FarmProductList> productList = new ArrayList<>(); 
 	public static List<DeliveryCharge> deliveryCharge = new ArrayList<>();
+	public static List<FarmProduct> farmProduct= new ArrayList<>();
 	
 	public Fid addFarmer(Farmer farmer) {
 		farmers.add(farmer);
@@ -98,15 +99,15 @@ public class FarmerService {
 	}
 
 	public List<FarmProduct> getFarmerProductsList(String fid){
-		List<FarmProduct> temp = new ArrayList<>();
+		
 		for(int i = 0;i<productList.size();i++) {
-			FarmProductList farmProduct = productList.get(i);			
-			if(farmProduct.getFid().equals(fid)) {
-				temp.add(farmProduct.getFarmProduct());
+			FarmProductList farmProductList = productList.get(i);			
+			if(farmProductList.getFid().equals(fid)) {
+				farmProduct.add(farmProductList.getFarmProduct());
 
 			}
 		}
-		return temp;
+		return farmProduct;
 	}
 
 	public FarmProduct getFarmProduct(String fid, String fspid) {

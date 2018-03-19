@@ -85,8 +85,7 @@ public class CustomerService {
 				//farm Info addded in order
 				order.setFarm_info(order_farm_info);
 
-				OrderDetail orderDetail = new OrderDetail();
-				//InputStreamOrder iso = new InputStreamOrder();
+				OrderDetail orderDetail = new OrderDetail();				
 				for(int k=0;k<inputStream.getOrder_detail().size();k++) {
 					InputStreamOrderDetail isod = inputStream.getOrder_detail().get(k);
 					for(int l= 0; l<FarmerService.farmProd.size();l++) {
@@ -100,9 +99,10 @@ public class CustomerService {
 							StringBuilder price = new StringBuilder();
 							price.append(farmProduct.getPrice()).append(" per ").append(farmProduct.getProduct_unit());						
 							orderDetail.setPrice(price.toString());
-							orderDetail.setLine_item_total(farmProduct.getPrice()*isod.getAmount());
-							orderDetailList.add(orderDetail);						
+							orderDetail.setLine_item_total(farmProduct.getPrice()*isod.getAmount());	
+							orderDetailList.add(orderDetail);
 						}
+						
 					}
 				}
 				//order details added in order.
