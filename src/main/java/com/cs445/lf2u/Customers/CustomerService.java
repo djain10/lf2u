@@ -76,50 +76,50 @@ public class CustomerService {
 				}
 				//farm Info addded in order
 				order.setFarm_info(order_farm_info);
-				
+
 				OrderDetail orderDetail = new OrderDetail();
 				InputStreamOrder iso = new InputStreamOrder();
 				for(int k=0;k<inputStream.getOrder_detail().size();k++) {
 					InputStreamOrderDetail isod = inputStream.getOrder_detail().get(k);
 					for(int l= 0; l<FarmerService.farmProd.size();l++) {
-					FarmProduct farmProduct = FarmerService.farmProd.get(l);
-					if(farmProduct.getFspid().equals(iso.getFid())) {
-						orderDetail.setFspid(isod.getFspid());
-						StringBuilder amount = new StringBuilder();
-						amount.append(isod.getAmount()).append(" ").append(farmProduct.getProduct_unit());
-						orderDetail.setAmount(amount.toString());
-						orderDetail.setName(farmProduct.getName());
-						StringBuilder price = new StringBuilder();
-						price.append(farmProduct.getPrice()).append(" per ").append(farmProduct.getProduct_unit());						
-						orderDetail.setPrice(price.toString());
-						orderDetail.setLine_item_total(farmProduct.getPrice()*isod.getAmount());
-						orderDetailList.add(orderDetail);						
+						FarmProduct farmProduct = FarmerService.farmProd.get(l);
+						if(farmProduct.getFspid().equals(iso.getFid())) {
+							orderDetail.setFspid(isod.getFspid());
+							StringBuilder amount = new StringBuilder();
+							amount.append(isod.getAmount()).append(" ").append(farmProduct.getProduct_unit());
+							orderDetail.setAmount(amount.toString());
+							orderDetail.setName(farmProduct.getName());
+							StringBuilder price = new StringBuilder();
+							price.append(farmProduct.getPrice()).append(" per ").append(farmProduct.getProduct_unit());						
+							orderDetail.setPrice(price.toString());
+							orderDetail.setLine_item_total(farmProduct.getPrice()*isod.getAmount());
+							orderDetailList.add(orderDetail);						
 						}
 					}
 				}
 				//order details added in order.
 				order.setOrderDetails(orderDetailList);
-				
+
 				order.setDeliveryNote(iso.getDelivery_note());
 				double total =0;
 				for(int m=0; m<order.getOrderDetails().size();m++) {
-					 
+
 					total += orderDetail.getLine_item_total();					
 				}
 				order.setProducts_total(total);
 				for(int n=0;n<FarmerService.deliveryCharge.size();n++) {
-				DeliveryCharge delivery_charge = FarmerService.deliveryCharge.get(n);
-				if(delivery_charge.getFid().equals(order.getFarm_info().getFid())) {
-					order.setDelivery_charge(delivery_charge);
-				}				
+					DeliveryCharge delivery_charge = FarmerService.deliveryCharge.get(n);
+					if(delivery_charge.getFid().equals(order.getFarm_info().getFid())) {
+						order.setDelivery_charge(delivery_charge);
+					}				
 				}
 				order.setOrder_total(order.getProducts_total() + order.getDelivery_charge().getDeliveryCharge());
-				
+
 				orderList.add(order);
 				CustomerOrderList col = new CustomerOrderList();
 				col.setCid(cid);
 				col.setOrder(order);
-				
+				customerOrderList.add(col);
 				Oid oid = new Oid();
 				oid.setOid(order.getOid());
 				return oid;
@@ -134,8 +134,18 @@ public class CustomerService {
 			Customer customer = customers.get(i);			
 			if(customer.getCid().equals(cid)) {
 				OutputOrderStream oos = new OutputOrderStream();
-				for(int i=0;)
-				Order order = orderList.get(i)
+				for(int j=0;j<customerOrderList.size();j++) {
+					CustomerOrderList list = customerOrderList.get(j);					
+					if(list.getCid().equals(cid)) {
+						oos.setOid(list.getOrder().getOid());
+						oos.setOrder_date(list.getOrder().getOrder_date());
+						oos.setActual_delivery_date(list.getOrder().getActual_planned_date());
+						oos.setPlanned_delivery_date(list.getOrder().getPlanned_delivery_date());
+						oos.setStatus(list.getOrder().getStatus());
+						oos.setFid(list.getOrder().getFarm_info().getFid().getFid());					
+						return oos;
+					}
+				}
 			}
 		}
 		return null;

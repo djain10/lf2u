@@ -61,5 +61,19 @@ public class FarmerController {
 		farmerService.updateFarmerProduct(fid,fspid, farmProduct);
 	}
 	
+	//report1
+	//repprt2
+	//report3
+	//report4
+	
+	@RequestMapping(method =RequestMethod.POST, value = "/farmers/{fid}/delivery_charge" )
+	public void modifyDeliveryCharge(@PathVariable String fid, @RequestBody DeliveryChargeOutput deliveryChargeOutput) {
+		farmerService.modifyDeliveryCharge(fid,deliveryChargeOutput);
+	}
+	
+	@RequestMapping("/farmers/{fid}/delivery_charge" )
+	public DeliveryChargeOutput getDeliveryCharge(@PathVariable String fid) {
+		return farmerService.getDeliveryCharge(fid);
+	}
 	
 }

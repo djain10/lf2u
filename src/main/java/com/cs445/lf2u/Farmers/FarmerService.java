@@ -2,7 +2,9 @@ package com.cs445.lf2u.Farmers;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.stereotype.Service;
+
 import com.cs445.lf2u.Manager.Catalog;
 import com.cs445.lf2u.Manager.ManagerService;
 
@@ -158,4 +160,30 @@ public class FarmerService {
 		}
 		
 	}
+
+	public void modifyDeliveryCharge(String fid, DeliveryChargeOutput deliveryChargeOutput) {
+		for(int i=0;i<farmers.size();i++) {
+			Farmer farmer = farmers.get(i);
+			if(farmer.getFid().equals(fid)) {
+				DeliveryCharge deliveryChargeList = new DeliveryCharge();
+				deliveryChargeList.setFid(fid);
+				deliveryChargeList.setDeliveryCharge(deliveryChargeOutput.getDelivery_charge());
+				deliveryCharge.add(deliveryChargeList);
+			}
+		}
+	}
+
+	public DeliveryChargeOutput getDeliveryCharge(String fid) {
+		for(int i=0;i<deliveryCharge.size();i++) {
+			
+			DeliveryCharge deliveryChargeList = deliveryCharge.get(i);
+			if(deliveryChargeList .getFid().equals(fid)) {
+				DeliveryChargeOutput  dco = new DeliveryChargeOutput();
+				return dco;
+			}
+		}
+		return null;
+	}
+	
+	
 }
