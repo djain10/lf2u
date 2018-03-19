@@ -10,7 +10,7 @@ public class InputDataBean {
 	String note;
 	String start_date;
 	String end_date;
-	String price;
+	double price;
 	String product_unit;
 	String image;	
 	
@@ -51,10 +51,11 @@ public class InputDataBean {
 	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
-	public String getPrice() {
+	
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public String getProduct_unit() {

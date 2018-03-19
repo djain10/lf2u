@@ -2,18 +2,18 @@ package com.cs445.lf2u.Farmers;
 
 import com.cs445.lf2u.IdGenreator.UniqueIdGenerator;
 
-public class FarmProducts {
+public class FarmProduct {
 	
 	String fspid;
 	String name;
 	String note;
 	String start_date;
 	String end_date;
-	String price;
+	double price;
 	String product_unit;
 	String image;
 		
-	public FarmProducts() {
+	public FarmProduct() {
 		this.fspid = UniqueIdGenerator.getUniqueID();
 	}
 	public String getFspid() {
@@ -46,10 +46,11 @@ public class FarmProducts {
 	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
-	public String getPrice() {
+	
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public String getProduct_unit() {
@@ -64,7 +65,4 @@ public class FarmProducts {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	
-
 }

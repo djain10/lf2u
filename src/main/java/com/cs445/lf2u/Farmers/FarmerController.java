@@ -48,13 +48,18 @@ public class FarmerController {
 	}
 	
 	@RequestMapping("/farmers/{fid}/products")
-	public List<FarmProducts> getFarmerProductsList(@PathVariable String fid){
+	public List<FarmProduct> getFarmerProductsList(@PathVariable String fid){
 		return farmerService.getFarmerProductsList(fid);
 	}
 	
 	@RequestMapping("/farmers/{fid}/products/{fspid}")
-	public FarmProducts getFarmProduct(String fid, String fspid) {
+	public FarmProduct getFarmProduct(@PathVariable String fid,@PathVariable String fspid) {
 		return farmerService.getFarmProduct(fid,fspid);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST,value ="/farmers/{fid}/products/{fspid}")
+	public void updateFarmerProduct(@PathVariable String fid,@PathVariable String fspid, @RequestBody FarmProduct farmProduct){
+		farmerService.updateFarmerProduct(fid,fspid, farmProduct);
 	}
 	
 }

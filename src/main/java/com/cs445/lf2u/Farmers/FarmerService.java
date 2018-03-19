@@ -10,7 +10,7 @@ import com.cs445.lf2u.Manager.ManagerService;
 public class FarmerService {
 
 	private List<Farmer> farmers= new ArrayList<>();
-	private List<FarmProducts> farmProd = new ArrayList<>();
+	private List<FarmProduct> farmProd = new ArrayList<>();
 	private List<FarmProductList> productList = new ArrayList<>(); 
 
 	public Fid addFarmer(Farmer farmer) {
@@ -63,8 +63,6 @@ public class FarmerService {
 	}
 
 	public Fspid addFarmProduct(String fid, InputDataBean inputData) {
-
-
 		for(int j=0;j<farmers.size();j++) {
 			Farmer farmer = farmers.get(j);
 			if(farmer.getFid().equals(fid)) {				
@@ -72,7 +70,7 @@ public class FarmerService {
 					Catalog catalog = ManagerService.catalogs.get(i);			
 					String gcpid = inputData.getGcpid();
 					if(catalog.getGcpid().equals(gcpid)) {
-						FarmProducts farmProduct = new FarmProducts();
+						FarmProduct farmProduct = new FarmProduct();
 						Fspid fspid = new Fspid();
 						FarmProductList prodList = new FarmProductList();
 						farmProduct.setName(catalog.getName());
@@ -96,8 +94,8 @@ public class FarmerService {
 		return null;
 	}
 
-	public List<FarmProducts> getFarmerProductsList(String fid){
-		List<FarmProducts> temp = new ArrayList<>();
+	public List<FarmProduct> getFarmerProductsList(String fid){
+		List<FarmProduct> temp = new ArrayList<>();
 		for(int i = 0;i<productList.size();i++) {
 			FarmProductList farmProduct = productList.get(i);			
 			if(farmProduct.getFid().equals(fid)) {
@@ -108,12 +106,12 @@ public class FarmerService {
 		return temp;
 	}
 
-	public FarmProducts getFarmProduct(String fid, String fspid) {
+	public FarmProduct getFarmProduct(String fid, String fspid) {
 		for(int i=0;i<productList.size();i++) {
 			FarmProductList prodList = productList.get(i);
 			if(prodList.getFid().equals(fid)) {
 				for(int j=0;j<farmProd.size();j++) {
-					FarmProducts farmProducts = farmProd.get(j);
+					FarmProduct farmProducts = farmProd.get(j);
 					if(farmProducts.getFspid().equals(fspid)) {
 						return farmProducts;
 					}
@@ -122,5 +120,41 @@ public class FarmerService {
 		}
 
 		return null;
+	}
+
+	public void updateFarmerProduct(String fid, String fspid, FarmProduct farmProduct) {
+		for(int j=0;j<farmers.size();j++) {
+			Farmer farmer = farmers.get(j);
+			if(farmer.getFid().equals(fid)) {				   
+				for(int i=0;i<farmProd.size();i++) {
+					FarmProduct farmPro = farmProd.get(i);
+					if(farmProduct.getFspid().equals(fspid)) {
+						if(!farmProduct.getNote().equals(null)) {
+							farmPro.setNote(farmProduct.getNote());
+						}
+						if(!farmProduct.getStart_date().equals(null)) {
+							farmPro.setStart_date(farmProduct.getStart_date());
+						}
+						if(!farmProduct.getEnd_date().equals(null)) {
+							farmPro.setEnd_date(farmProduct.getEnd_date());
+						}
+						double priceValue =farmProduct.getPrice();
+						if(!(priceValue == 0)) {
+						
+							farmPro.setPrice(farmProduct.getPrice());
+						}
+						if(!farmProduct.getProduct_unit().equals(null)) {
+							farmPro.setProduct_unit(farmProduct.getProduct_unit());
+						}
+						if(!farmProduct.getImage().equals(null)) {
+							farmPro.setImage(farmProduct.getImage());
+						}
+						
+						
+					}
+				}
+			}
+		}
+		
 	}
 }
