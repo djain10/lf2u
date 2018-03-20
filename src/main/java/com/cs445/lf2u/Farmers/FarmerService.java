@@ -132,30 +132,30 @@ public class FarmerService {
 			if(farmer.getFid().equals(fid)) {				   
 				for(int i=0;i<farmProd.size();i++) {
 					FarmProduct farmPro = farmProd.get(i);
-					if(farmProduct.getFspid().equals(fspid)) {
-						if(!farmProduct.getNote().equals(null)) {
+					if(farmPro.getFspid().equals(fspid)) {
+						if(farmProduct.getNote() != null) {
 							farmPro.setNote(farmProduct.getNote());
 						}
-						if(!farmProduct.getStart_date().equals(null)) {
+						if(farmProduct.getStart_date()!= null) {
 							farmPro.setStart_date(farmProduct.getStart_date());
 						}
-						if(!farmProduct.getEnd_date().equals(null)) {
+						if(farmProduct.getEnd_date() != null) {
 							farmPro.setEnd_date(farmProduct.getEnd_date());
 						}
 						double priceValue =farmProduct.getPrice();
-						if(!(priceValue == 0)) {
+						if(priceValue >=0 ) {
 						
 							farmPro.setPrice(farmProduct.getPrice());
 						}
-						if(!farmProduct.getProduct_unit().equals(null)) {
+						if(farmProduct.getProduct_unit() != null) {
 							farmPro.setProduct_unit(farmProduct.getProduct_unit());
 						}
-						if(!farmProduct.getImage().equals(null)) {
+						if(farmProduct.getImage() !=null) {
 							farmPro.setImage(farmProduct.getImage());
-						}
-						
-						
+						}					
+				
 					}
+				
 				}
 			}
 		}

@@ -85,12 +85,13 @@ public class CustomerService {
 				//farm Info addded in order
 				order.setFarm_info(order_farm_info);
 
-				OrderDetail orderDetail = new OrderDetail();				
+				double total =0;			
 				for(int k=0;k<inputStream.getOrder_detail().size();k++) {
 					InputStreamOrderDetail isod = inputStream.getOrder_detail().get(k);
 					for(int l= 0; l<FarmerService.farmProd.size();l++) {
 						FarmProduct farmProduct = FarmerService.farmProd.get(l);
 						if(farmProduct.getFspid().equals(isod.getFspid())) {
+							OrderDetail orderDetail = new OrderDetail();
 							orderDetail.setFspid(isod.getFspid());
 							StringBuilder amount = new StringBuilder();
 							amount.append(isod.getAmount()).append(" ").append(farmProduct.getProduct_unit());
@@ -99,8 +100,10 @@ public class CustomerService {
 							StringBuilder price = new StringBuilder();
 							price.append(farmProduct.getPrice()).append(" per ").append(farmProduct.getProduct_unit());						
 							orderDetail.setPrice(price.toString());
-							orderDetail.setLine_item_total(farmProduct.getPrice()*isod.getAmount());	
+							orderDetail.setLine_item_total(farmProduct.getPrice()*isod.getAmount());
+							total += orderDetail.getLine_item_total();
 							orderDetailList.add(orderDetail);
+							break;
 						}
 						
 					}
@@ -109,11 +112,7 @@ public class CustomerService {
 				order.setOrderDetails(orderDetailList);
 
 				order.setDeliveryNote(inputStream.getDelivery_note());
-				double total =0;
-				for(int m=0; m<order.getOrderDetails().size();m++) {
 
-					total += orderDetail.getLine_item_total();					
-				}
 				order.setProducts_total(total);
 								
 				}
