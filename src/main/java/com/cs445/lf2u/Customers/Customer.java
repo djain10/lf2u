@@ -1,6 +1,6 @@
 package com.cs445.lf2u.Customers;
 
-import com.cs445.lf2u.IdGenreator.UniqueIdGenerator;
+import com.cs445.lf2u.Util.UniqueIdGenerator;
 
 public class Customer {
 

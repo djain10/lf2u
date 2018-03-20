@@ -1,13 +1,13 @@
 package com.cs445.lf2u.Farmers;
 
-import com.cs445.lf2u.IdGenreator.UniqueIdGenerator;
+import com.cs445.lf2u.Util.UniqueIdGenerator;
 
 public class Farmer {
 
 	String fid;
 	Farm_info farm_info;
 	Personal_info personal_info;				
-	String[] delivers_to;
+	public String[] delivers_to;
 	
 	public Farmer(){
 		this.fid = UniqueIdGenerator.getUniqueFID();

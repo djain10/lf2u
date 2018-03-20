@@ -1,7 +1,8 @@
 package com.cs445.lf2u.Orders;
 
 import java.util.List;
-import com.cs445.lf2u.IdGenreator.UniqueIdGenerator;
+
+import com.cs445.lf2u.Util.UniqueIdGenerator;
 
 public class Order {
 	
